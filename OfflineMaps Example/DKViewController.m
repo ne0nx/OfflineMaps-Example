@@ -9,10 +9,6 @@
 #import "DKViewController.h"
 #import <MapBox/Mapbox.h>
 
-@interface DKViewController ()
-
-@end
-
 @implementation DKViewController
 
 - (void)viewDidLoad

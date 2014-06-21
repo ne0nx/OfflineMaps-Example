@@ -7,6 +7,7 @@
 //
 
 #import "DKViewController.h"
+#import <MapBox/Mapbox.h>
 
 @interface DKViewController ()
 
@@ -17,13 +18,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    RMMBTilesSource *offlineSource = [[RMMBTilesSource alloc] initWithTileSetResource:@"HongKong" ofType:@"mbtiles"];
+    
+    RMMapView *mapView = [[RMMapView alloc] initWithFrame:self.view.bounds andTilesource:offlineSource];
+    
+    [mapView setZoom:11];
+    
+    [mapView setMinZoom:11];
+    [mapView setMaxZoom:14];
+    
+    [mapView setShowLogoBug:NO];
+    [mapView setHideAttribution:YES];
+    
+    mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    mapView.adjustTilesForRetinaDisplay = YES; // these tiles aren't designed specifically for retina, so make them legible
+    
+    [self.view addSubview:mapView];
 }
 
 @end
